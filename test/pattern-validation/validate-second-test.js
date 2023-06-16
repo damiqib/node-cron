@@ -28,5 +28,11 @@ describe('pattern-validation.js', () => {
                 validate('*/2 * * * * *');
             }).to.not.throw();
         });
+
+        it('should not fail with 1-59/2 for second', () => {
+            expect(() => {
+                validate('1-59/2 * * * * *');
+            }).to.not.throw();
+        });
     });
 });
