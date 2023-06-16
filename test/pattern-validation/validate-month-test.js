@@ -40,5 +40,11 @@ describe('pattern-validation.js',  () => {
                 validate('* * * */2 *');
             }).to.not.throw();
         });
+
+        it('should not fail with 1-12/2 for month',  () => {
+            expect( () => {
+                validate('* * * 1-12/2 *');
+            }).to.not.throw();
+        });
     });
 });

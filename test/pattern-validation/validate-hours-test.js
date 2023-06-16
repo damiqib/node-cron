@@ -29,6 +29,12 @@ describe('pattern-validation.js', () => {
             }).to.not.throw();
         });
 
+        it('should not fail with 1-23/2 for hour', () => {
+            expect(() => {
+                validate('* 1-23/2 * * *');
+            }).to.not.throw();
+        });
+
         it('should accept range for hours', () => {
             expect(() => {
                 validate('* 3-20 * * *');

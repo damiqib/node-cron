@@ -41,6 +41,12 @@ describe('pattern-validation.js', () => {
             }).to.not.throw();
         });
 
+        it('should not fail with 1-5/2 for week day', () => {
+            expect(() => {
+                validate('* * * 1-5/2 *');
+            }).to.not.throw();
+        });
+
         it('should not fail with Monday-Sunday for week day', () => {
             expect(() => {
                 validate('* * * * Monday-Sunday');

@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (() => {
-    function convertSteps(expressions){
+    function convertSteps(expressions, treatStepAsNth){
         var stepValuePattern = /^(.+)\/(\w+)$/;
         for(var i = 0; i < expressions.length; i++){
             var match = stepValuePattern.exec(expressions[i]);
@@ -14,10 +14,19 @@ module.exports = (() => {
                 var values = match[1].split(',');
                 var stepValues = [];
                 var divider = parseInt(baseDivider, 10);
-                for(var j = 0; j <= values.length; j++){
-                    var value = parseInt(values[j], 10);
-                    if(value % divider === 0){
-                        stepValues.push(value);
+                if (!treatStepAsNth[i]) {
+                    for(var j = 0; j <= values.length; j++){
+                        var valueA = parseInt(values[j], 10);
+                        if(valueA % divider === 0){
+                            stepValues.push(valueA);
+                        }
+                    }
+                } else {
+                    for(var k = 0; k <= values.length; k+=divider){
+                        var valueB = parseInt(values[k], 10);
+                        if(!isNaN(valueB)) {
+                            stepValues.push(valueB);
+                        }
                     }
                 }
                 expressions[i] = stepValues.join(',');

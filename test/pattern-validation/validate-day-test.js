@@ -28,5 +28,11 @@ describe('pattern-validation.js', () => {
                 validate('* * */2 * *');
             }).to.not.throw();
         });
+
+        it('should not fail with 1-31/2 for day of month', () => {
+            expect(() => {
+                validate('* * 1-31/2 * *');
+            }).to.not.throw();
+        });
     });
 });
